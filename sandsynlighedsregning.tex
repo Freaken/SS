@@ -1,1 +1,17 @@
 \section{Sandsynlighedsregning}
+\newcommand{\diff}[1]{\frac{\mathrm{d}}{\mathrm{d}#1}}
+
+\paragraph{1.} Lad $X$ være normalfordelt med middelværdi $\mu$ og
+varians $\sigma^2$, og lad $Y=\mathrm{exp}(X)$. Lad $f_X$, $F_X$, $f_Y$ og $F_X$ være
+sandsynlighedstætheden og fordelingsfunktionerne for henholdsvis $X$ og $Y$. Der
+gælder at $F_X(x) =
+F_Y(\mathrm{exp}(x))$. Substitueres $x$ med $\log y, y > 0$
+fås $F_Y(y) = F_Y(\log y)$, hvorved $f_Y(y), y > 0$ kan udregnes:
+
+\begin{align*}
+f_Y(y) &= \diff{y} F_Y(y) \\
+&= \diff{y} F_X(\log y) \\
+&= \frac{1}{y} f_X(\log y) \\
+&= \frac{1}{y} \frac{1}{\sqrt{2\pi\sigma^2}}\mathrm{exp}\left( -\frac{(\log y - \mu)^2}{2\sigma^2} \right) \\ 
+&= \frac{1}{y\sqrt{2\pi\sigma^2}}\mathrm{exp}\left( -\frac{(\log y - \mu)^2}{2\sigma^2} \right) 
+\end{align*}
