@@ -1,17 +1,85 @@
 \section{Sandsynlighedsregning}
-\newcommand{\diff}[1]{\frac{\mathrm{d}}{\mathrm{d}#1}}
+\newcommand{\diff}{\mathrm{d}}
 
 \paragraph{1.} Lad $X$ være normalfordelt med middelværdi $\mu$ og
 varians $\sigma^2$, og lad $Y=\mathrm{exp}(X)$. Lad $f_X$, $F_X$, $f_Y$ og $F_X$ være
 sandsynlighedstætheden og fordelingsfunktionerne for henholdsvis $X$ og $Y$. Der
 gælder at $F_X(x) =
 F_Y(\mathrm{exp}(x))$. Substitueres $x$ med $\log y, y > 0$
-fås $F_Y(y) = F_Y(\log y)$, hvorved $f_Y(y), y > 0$ kan udregnes:
+fås $F_X(y) = F_Y(\log y)$, hvorved $f_Y(y), y > 0$ kan udregnes:
 
 \begin{align*}
-f_Y(y) &= \diff{y} F_Y(y) \\
-&= \diff{y} F_X(\log y) \\
+f_Y(y) &= \frac{\diff}{\diff y} F_Y(y) \\
+&= \frac{\diff}{\diff y} F_X(\log y) \\
 &= \frac{1}{y} f_X(\log y) \\
 &= \frac{1}{y} \frac{1}{\sqrt{2\pi\sigma^2}}\mathrm{exp}\left( -\frac{(\log y - \mu)^2}{2\sigma^2} \right) \\ 
 &= \frac{1}{y\sqrt{2\pi\sigma^2}}\mathrm{exp}\left( -\frac{(\log y - \mu)^2}{2\sigma^2} \right) 
 \end{align*}
+
+
+% Jeg vil tro at denne opgave kan løses pænere ved at bruge sætninger fra bogen
+\paragraph{2.} Middelværdien for $Y$ findes:
+
+\begin{align*}
+\mathrm{E}(Y) &= \int_0^\infty y*f_Y(y)\ \diff y \\
+&= \int_0^\infty f_X(\log y)\ \diff y 
+\end{align*}
+
+Der substitueres med $x + \mu + \frac{\sigma^2}{2} = \log y$, idet $\frac{\diff
+y}{\diff x} = \mathrm{exp}(x + \mu + \frac{\sigma^2}{2})$:
+
+\begin{align*}
+\mathrm{E}(Y) &= \int_0^\infty f_X(\log y)\ \diff y \\
+&= \int_{-\infty}^\infty
+     f_X\left(x + \mu + \frac{\sigma^2}{2}\right) *
+     \mathrm{exp}\left(x + \mu + \frac{\sigma^2}{2}\right)
+   \ \diff x \\
+&= \int_{-\infty}^\infty
+     \frac{1}{\sqrt{2\pi\sigma^2}} *
+     \mathrm{exp}\left(-\frac{(x + \mu + \frac{\sigma^2}{2} - \mu)^2}{2\sigma^2}\right) *
+     \mathrm{exp}\left(x + \mu + \frac{\sigma^2}{2}\right)
+   \ \diff x \\
+&= \int_{-\infty}^\infty
+     \frac{1}{\sqrt{2\pi\sigma^2}} *
+     \mathrm{exp}\left(-\frac{(x + \frac{\sigma^2}{2})^2}{2\sigma^2}\right) *
+     \mathrm{exp}\left(x + \mu + \frac{\sigma^2}{2}\right)
+   \ \diff x \\
+&= \left(\int_{-\infty}^\infty
+     \frac{1}{\sqrt{2\pi\sigma^2}} *
+     \mathrm{exp}\left(-\frac{(x + \frac{\sigma^2}{2})^2}{2\sigma^2}\right) *
+     \mathrm{exp}(x)
+   \ \diff x\right) * \exp\left(\mu + \frac{\sigma^2}{2}\right) \\
+&= \left (\int_{-\infty}^\infty
+     \frac{1}{\sqrt{2\pi\sigma^2}} *
+     \mathrm{exp}\left(-\frac{(x + \frac{\sigma^2}{2})^2}{2\sigma^2} + x\right) *
+   \ \diff x\right) * \exp\left(\mu + \frac{\sigma^2}{2}\right) \\
+\end{align*}
+
+Det kan vises, at $-\frac{(z + \frac{\sigma^2}{2})^2}{2\sigma^2} + z$ har
+$\frac{\sigma^2}{2}$ som eneste rod, hvorved det kan omskrives til
+$-\frac{(z - \frac{\sigma^2}{2})}{2\sigma^2}$.
+
+Det samlede indhold af integralet bliver derfor blot tæthedsfunktionen til
+normalfordelingen med middelværdi $\frac{\sigma^2}{2}$ og varians $\sigma^2$.
+Dette integral har netop værdien $1$, hvorved bliver $\mathrm{E}(Y) =
+\exp\left(\mu + \frac{\sigma^2}{2}\right)$.
+
+\paragraph{4.} Det ses direkte ud af formlen for normalfordelingen at den er
+symmetrisk omkring $\mu$, altså med andre ord at $f_X(\mu - x) = f_X(\mu +
+x)$. Dette er i sig selv nok til at vise, at medianen for $X$ er $\mu$:
+
+\begin{align*}
+F_X(\mu) &= \int_{-\infty}^\mu f_X(x)\ \diff x \\
+&=\int_{-\infty}^0 f_X(\mu + x)\ \diff x \\
+&=\frac{1}{2}\left(2\int_{-\infty}^0 f_X(\mu + x)\ \diff x\right) \\
+&=\frac{1}{2}\left(\int_{-\infty}^0 f_X(\mu + x)\ \diff x + \int_{-\infty}^0 f_X(\mu - x)\ \diff x\right) \\
+&=\frac{1}{2}\left(\int_{-\infty}^0 f_X(\mu + x)\ \diff x + \int_0^\infty f_X(\mu + x)\ \diff x\right) \\
+&=\frac{1}{2}\int_{-\infty}^\infty f_X(\mu + x)\ \diff x \\
+&=\frac{1}{2}\int_{-\infty}^\infty f_X(\mu + x)\ \diff x \\
+&=\frac{1}{2}\int_{-\infty}^\infty f_X(x)\ \diff x \\
+&=\frac{1}{2}
+\end{align*}
+
+Ved at bruge at $F_X(x) = F_Y(\mathrm{exp}(x))$ fås at
+$F_Y(\mathrm{exp}(\mu)) = F_X(\mu) = \frac{1}{2}$, hvorved medianen for $Y$
+er $\mathrm{exp}(\mu)$.
