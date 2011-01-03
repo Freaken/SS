@@ -56,6 +56,15 @@ bruges, at indholdet af integral blot er tæthedsfunktionen til
 normalfordelingen med middelværdi $\frac{\sigma^2}{2}$ og varians $\sigma^2$.
 Dette integral har netop værdien $1$ og forsvinder derfor.
 
+\paragraph{3.} Vi skal finde variansen $Var(Y) = E(Y^2) -
+(E(Y))^2$. Vi ved at $(E(Y))^2 = (e^{\mu+\sigma^2 / 2})^2 = e^{2\mu +
+  \sigma^2}$. Nu mangler altså blot at vise, at
+$E(Y^2)=e^{\sigma^2}e^{2\mu+\sigma^2} = e^{2\mu+ 2\sigma^2}$ for at
+$Var(Y) = (e^{\sigma^2} - 1)e^{2\mu+\sigma^2} = e^{2\mu +2\sigma^2} -
+e^{2\mu+\sigma^2}$ er opfyldt. % TODO: Dette er bekræftet af
+                               % wolframalpha, men jeg kan sgu ikke
+                               % finde ud af at regne det ud...
+
 \paragraph{4.} Det ses direkte ud af formlen for normalfordelingen at den er
 symmetrisk omkring $\mu$, altså med andre ord at $f_X(\mu - x) = f_X(\mu +
 x)$. Dette er i sig selv nok til at vise, at medianen for $X$ er $\mu$:
