@@ -1,7 +1,8 @@
 sim <- exp(rnorm(5000,5,0.5))
-hist(sim,prob=T,nclass=25)
-f <- function(y,mu,sigma) exp(rnorm(y,mu,sigma))
+f <- function(y,mu,sigma)
+1/(y*sqrt(2*pi*sigma^2))*exp(-((log(y)-mu)^2)/(2*sigma^2))
+hist(sim,prob=T,nclass=50)
 yval <- seq(0,1000,1)
 fval <- f(yval,5,0.5)
-lines(yval,fval) #Why doesn't this go into the diagram?
-results <- c(mean(sim)) #missing something...
+lines(yval,fval)
+results <- c(mean(sim),var(sim),sd(sim))
