@@ -1,26 +1,24 @@
 \section{Sandsynlighedsregning}
 \newcommand{\diff}{\mathrm{d}}
 
-\paragraph{1.} Lad $X$ være normalfordelt med middelværdi $\mu$ og
-varians $\sigma^2$, og lad $Y=\mathrm{exp}(X)$. Lad $f_X$, $F_X$, $f_Y$ og $F_X$ være
-sandsynlighedstætheden og fordelingsfunktionerne for henholdsvis $X$ og $Y$. Der
-gælder at $F_X(x) =
-F_Y(\mathrm{exp}(x))$. Substitueres $x$ med $\log y, y > 0$
-fås $F_X(y) = F_Y(\log y)$, hvorved $f_Y(y), y > 0$ kan udregnes:
+\paragraph{1.} Lad $X$ være normalfordelt med middelværdi $\mu$ og varians
+$\sigma^2$, og lad $Y=\exp(X)$. Lad $f_X$, $F_X$, $f_Y$ og $F_X$
+være sandsynlighedstætheden og fordelingsfunktionerne for henholdsvis $X$ og
+$Y$. Der gælder at $F_X(x) = F_Y(\exp(x))$. Substitueres $x$ med $\log
+y, y > 0$ fås $F_X(y) = F_Y(\log y)$, hvorved $f_Y(y), y > 0$ kan udregnes:
 
 \begin{align*}
 f_Y(y) &= \frac{\diff}{\diff y} F_Y(y) \\
 &= \frac{\diff}{\diff y} F_X(\log y) \\
 &= \frac{1}{y} f_X(\log y) \\
-&= \frac{1}{y} \frac{1}{\sqrt{2\pi\sigma^2}}\mathrm{exp}\left( -\frac{(\log y - \mu)^2}{2\sigma^2} \right) \\ 
-&= \frac{1}{y\sqrt{2\pi\sigma^2}}\mathrm{exp}\left( -\frac{(\log y - \mu)^2}{2\sigma^2} \right) 
+&= \frac{1}{y} \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left( -\frac{(\log y - \mu)^2}{2\sigma^2} \right) \\ 
+&= \frac{1}{y\sqrt{2\pi\sigma^2}}\exp\left( -\frac{(\log y - \mu)^2}{2\sigma^2} \right) 
 \end{align*}
 
 
-% Jeg vil tro at denne opgave kan løses pænere ved at bruge sætninger fra bogen
-\paragraph{2.} Middelværdien for $Y$ findes, ved at substitueres med $x + \mu
-+ \frac{\sigma^2}{2} = \log y$, hvor det bruges at $\frac{\diff
-y}{\diff x} = \mathrm{exp}(x + \mu + \frac{\sigma^2}{2})$:
+\paragraph{2.} Middelværdien for $Y$ findes, ved at substitueres med $x +
+\mu + \frac{\sigma^2}{2} = \log y$, hvor det bruges at $\frac{\diff y}{\diff
+x} = \exp(x + \mu + \frac{\sigma^2}{2})$:
 
 \begin{align*}
 \mathrm{E}(Y)
@@ -28,46 +26,87 @@ y}{\diff x} = \mathrm{exp}(x + \mu + \frac{\sigma^2}{2})$:
 &= \int_0^\infty f_X(\log y)\ \diff y \\
 &= \int_{-\infty}^\infty
      f_X\left(x + \mu + \frac{\sigma^2}{2}\right) *
-     \mathrm{exp}\left(x + \mu + \frac{\sigma^2}{2}\right)
+     \exp\left(x + \mu + \frac{\sigma^2}{2}\right)
    \ \diff x \\
 &= \exp\left(\mu + \frac{\sigma^2}{2}\right) * \left(\int_{-\infty}^\infty
      f_X\left(x + \mu + \frac{\sigma^2}{2}\right) *
-     \mathrm{exp}(x)
+     \exp(x)
    \ \diff x\right) \\
 &= \exp\left(\mu + \frac{\sigma^2}{2}\right) * \left(\int_{-\infty}^\infty
      \frac{1}{\sqrt{2\pi\sigma^2}} *
-     \mathrm{exp}\left(-\frac{(x + \mu + \frac{\sigma^2}{2} - \mu)^2}{2\sigma^2}\right) *
-     \mathrm{exp}(x)
+     \exp\left(-\frac{(x + \mu + \frac{\sigma^2}{2} - \mu)^2}{2\sigma^2}\right) *
+     \exp(x)
    \ \diff x\right) \\
 &= \exp\left(\mu + \frac{\sigma^2}{2}\right) * \left(\int_{-\infty}^\infty
      \frac{1}{\sqrt{2\pi\sigma^2}} *
-     \mathrm{exp}\left(-\frac{(x + \frac{\sigma^2}{2})^2}{2\sigma^2} + x\right)
+     \exp\left(-\frac{(x + \frac{\sigma^2}{2})^2}{2\sigma^2} + x\right)
    \ \diff x\right) \\
 &= \exp\left(\mu + \frac{\sigma^2}{2}\right) * \left(\int_{-\infty}^\infty
      \frac{1}{\sqrt{2\pi\sigma^2}} *
-     \mathrm{exp}\left(-\frac{(x - \frac{\sigma^2}{2})^2}{2\sigma^2}\right)
+     \exp\left(-\frac{(x - \frac{\sigma^2}{2})^2}{2\sigma^2}\right)
    \ \diff x\right) \\
 &= \exp\left(\mu + \frac{\sigma^2}{2}\right) \\
 \end{align*}
 
-Her udnyttes i det næstsidste trin, at $-\frac{(x + \frac{\sigma^2}{2})^2}{2\sigma^2} + x$ har
-dobbeltroden $\frac{\sigma^2}{2}$, og dermed kan omskrives. I det sidste trin
-bruges, at indholdet af integral blot er tæthedsfunktionen til
-normalfordelingen med middelværdi $\frac{\sigma^2}{2}$ og varians $\sigma^2$.
-Dette integral har netop værdien $1$ og forsvinder derfor.
+Her udnyttes i det næstsidste trin, at $-\frac{(x +
+\frac{\sigma^2}{2})^2}{2\sigma^2} + x$ har dobbeltroden $\frac{\sigma^2}{2}$, og
+dermed kan omskrives. I det sidste trin bruges, at indholdet af integral blot er
+tæthedsfunktionen til normalfordelingen med middelværdi $\frac{\sigma^2}{2}$
+og varians $\sigma^2$. Dette integral har netop værdien $1$ og forsvinder
+derfor.
 
-\paragraph{3.} Vi skal finde variansen $Var(Y) = E(Y^2) -
-(E(Y))^2$. Vi ved at $(E(Y))^2 = (e^{\mu+\sigma^2 / 2})^2 = e^{2\mu +
-  \sigma^2}$. Nu mangler altså blot at vise, at
-$E(Y^2)=e^{\sigma^2}e^{2\mu+\sigma^2} = e^{2\mu+ 2\sigma^2}$ for at
-$Var(Y) = (e^{\sigma^2} - 1)e^{2\mu+\sigma^2} = e^{2\mu +2\sigma^2} -
-e^{2\mu+\sigma^2}$ er opfyldt. % TODO: Dette er bekræftet af
-                               % wolframalpha, men jeg kan sgu ikke
-                               % finde ud af at regne det ud...
+\paragraph{3.} Vi skal finde variansen $\mathrm{Var}(Y) = \mathrm{E}(Y^2)
+- (\mathrm{E}(Y))^2$. Vi ved at $(\mathrm{E}(Y))^2 = \exp(\mu+\sigma^2
+/ 2)^2 = \exp(2\mu + \sigma^2)$. Nu mangler altså blot at vise, at
+$\mathrm{E}(Y^2)=\exp(\sigma^2)\exp(2\mu+\sigma^2) = \exp(2\mu+ 2\sigma^2)$
+for at $\mathrm{Var}(Y) = (\exp(\sigma^2) - 1)\exp(2\mu+\sigma^2) =
+\exp(2\mu+2\sigma^2) - \exp(2\mu+\sigma^2)$ er opfyldt.\\
+\\
+Der laves substitution med $x + \sigma^2 + \mu = \log y$, hvor
+$\frac{\diff y}{\diff x} = \exp\left(x+\sigma^2 + \mu\right)$:
+\begin{align*}
+\mathrm{E}(Y^2)
+&= \int_0^\infty y^2 * f_Y(y)\ \diff y \\
+&= \int_0^\infty y * f_X(\log y)\ \diff y \\
+&= \int_{-\infty}^\infty
+      \exp(x+\sigma^2 + \mu) *
+       f_X(x+\sigma^2 + \mu) *
+      \exp(x+\sigma^2 + \mu)
+   \ \diff x \\
+&= \int_{-\infty}^\infty
+      \exp(2x+2\sigma^2 + 2\mu) *
+       f_X(x+\sigma^2 + \mu)
+   \ \diff x \\
+&= \exp(2\sigma^2 + 2\mu) *
+   (\int_{-\infty}^\infty
+      \exp(2x) *
+       f_X(x+\sigma^2 + \mu)
+   \ \diff x)\\
+&= \exp(2sigma^2 + 2\mu) *
+   \left(\int_{-\infty}^\infty
+      \exp(2x) *
+      \exp\left(
+        -\frac{(x+\sigma^2)^2}{2\sigma^2}
+      \right)
+   \ \diff x\right)\\
+&= \exp(2\sigma^2 + 2\mu) *
+   \left(\int_{-\infty}^\infty
+      \exp\left(
+        -\frac{(x+\sigma^2)^2 - 4\sigma^2 x}{2\sigma^2}
+      \right)
+   \ \diff x\right) \\
+&= \exp(2\sigma^2 + 2\mu) *
+   \left(\int_{-\infty}^\infty
+      \exp\left(
+        -\frac{(x-\sigma^2)^2}{2\sigma^2}
+      \right)
+   \ \diff x\right) \\
+&= \exp(2\sigma^2 + 2\mu)
+\end{align*}
 
 \paragraph{4.} Det ses direkte ud af formlen for normalfordelingen at den er
-symmetrisk omkring $\mu$, altså med andre ord at $f_X(\mu - x) = f_X(\mu +
-x)$. Dette er i sig selv nok til at vise, at medianen for $X$ er $\mu$:
+symmetrisk omkring $\mu$, altså med andre ord at $f_X(\mu - x) = f_X(\mu + x)$.
+Dette er i sig selv nok til at vise, at medianen for $X$ er $\mu$:
 
 \begin{align*}
 F_X(\mu) &= \int_{-\infty}^\mu f_X(x)\ \diff x \\
@@ -81,6 +120,5 @@ F_X(\mu) &= \int_{-\infty}^\mu f_X(x)\ \diff x \\
 &=\frac{1}{2}
 \end{align*}
 
-Ved at bruge at $F_X(x) = F_Y(\mathrm{exp}(x))$ fås at
-$F_Y(\mathrm{exp}(\mu)) = F_X(\mu) = \frac{1}{2}$, hvorved medianen for $Y$
-er $\mathrm{exp}(\mu)$.
+Ved at bruge at $F_X(x) = F_Y(\exp(x))$ fås at $F_Y(\mathrm{exp}(\mu))
+= F_X(\mu) = \frac{1}{2}$, hvorved medianen for $Y$ er $\exp(\mu)$.
