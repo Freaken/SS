@@ -20,8 +20,25 @@ Vi har estimeret middelværdien og variansen til at være $\mu = 7,485 ,
 \sigma^2 = 0,1917$.
 
 
+\paragraph{14.} 
+$n = 1079 \qquad \bar{y} = 7,485 \qquad \sigma^2 = 0,1917$
+\begin{align*}
+7,485 \pm 1,96 \cdot \frac{0,1917}{\sqrt{1079}} = (7,436 ; 7,496)
+\end{align*}
 
-\paragraph{14.}
+\begin{verbatim}
+> t.test(logavitM)
 
+        One Sample t-test
+
+data:  logavitM 
+t = 561.6206, df = 1078, p-value < 2.2e-16
+alternative hypothesis: true mean is not equal to 0 
+95 percent confidence interval:
+ 7.458842 7.511143 
+sample estimates:
+mean of x 
+ 7.484993 
+\end{verbatim}
 
 \paragraph{15.}

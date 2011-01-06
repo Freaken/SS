@@ -4,26 +4,28 @@
 \paragraph{1.} Lad $X$ være normalfordelt med middelværdi $\mu$ og varians
 $\sigma^2$, og lad $Y=\exp(X)$. Lad $f_X$, $F_X$, $f_Y$ og $F_X$
 være sandsynlighedstætheden og fordelingsfunktionerne for henholdsvis $X$ og
-$Y$. Der gælder at $F_X(x) = F_Y(\exp(x))$. Substitueres $x$ med $\log
-y, y > 0$ fås $F_X(y) = F_Y(\log y)$, hvorved $f_Y(y), y > 0$ kan udregnes:
+$Y$. Der gælder at $F_X(x) = F_Y(\exp(x))$. Substitueres $x$ med $\ln
+y, y > 0$ fås $F_X(\ln y) = F_Y(y)$, hvorved $f_Y(y), y > 0$ kan udregnes:
 
 \begin{align*}
 f_Y(y) &= \frac{\diff}{\diff y} F_Y(y) \\
-&= \frac{\diff}{\diff y} F_X(\log y) \\
-&= \frac{1}{y} f_X(\log y) \\
-&= \frac{1}{y} \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left( -\frac{(\log y - \mu)^2}{2\sigma^2} \right) \\ 
-&= \frac{1}{y\sqrt{2\pi\sigma^2}}\exp\left( -\frac{(\log y - \mu)^2}{2\sigma^2} \right) 
+&= \frac{\diff}{\diff y} F_X(\ln y) \\
+&= \frac{1}{y} f_X(\ln y) \\
+&= \frac{1}{y} \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left( -\frac{(\ln y - \mu)^2}{2\sigma^2} \right) \\ 
+&= \frac{1}{y\sqrt{2\pi\sigma^2}}\exp\left( -\frac{(\ln y - \mu)^2}{2\sigma^2} \right) 
 \end{align*}
 
+Det ses også ud fra denne udregning at $f_Y(y)*y = f_X(\ln y)$, hvilket
+benyttes i de følgende opgaver.
 
 \paragraph{2.} Middelværdien for $Y$ findes, ved at substitueres med $x +
-\mu + \frac{\sigma^2}{2} = \log y$, hvor det bruges at $\frac{\diff y}{\diff
+\mu + \frac{\sigma^2}{2} = \ln y$, hvor det bruges at $\frac{\diff y}{\diff
 x} = \exp(x + \mu + \frac{\sigma^2}{2})$:
 
 \begin{align*}
 \mathrm{E}(Y)
 &= \int_0^\infty y*f_Y(y)\ \diff y \\
-&= \int_0^\infty f_X(\log y)\ \diff y \\
+&= \int_0^\infty f_X(\ln y)\ \diff y \\
 &= \int_{-\infty}^\infty
      f_X\left(x + \mu + \frac{\sigma^2}{2}\right) *
      \exp\left(x + \mu + \frac{\sigma^2}{2}\right)
@@ -62,12 +64,12 @@ $\mathrm{E}(Y^2)=\exp(\sigma^2)\exp(2\mu+\sigma^2) = \exp(2\mu+ 2\sigma^2)$
 for at $\mathrm{Var}(Y) = (\exp(\sigma^2) - 1)\exp(2\mu+\sigma^2) =
 \exp(2\mu+2\sigma^2) - \exp(2\mu+\sigma^2)$ er opfyldt.\\
 \\
-Der laves substitution med $x + \sigma^2 + \mu = \log y$, hvor
+Der laves substitution med $x + \sigma^2 + \mu = \ln y$, hvor
 $\frac{\diff y}{\diff x} = \exp\left(x+\sigma^2 + \mu\right)$:
 \begin{align*}
 \mathrm{E}(Y^2)
 &= \int_0^\infty y^2 * f_Y(y)\ \diff y \\
-&= \int_0^\infty y * f_X(\log y)\ \diff y \\
+&= \int_0^\infty y * f_X(\ln y)\ \diff y \\
 &= \int_{-\infty}^\infty
       \exp(x+\sigma^2 + \mu) *
        f_X(x+\sigma^2 + \mu) *
@@ -78,25 +80,28 @@ $\frac{\diff y}{\diff x} = \exp\left(x+\sigma^2 + \mu\right)$:
        f_X(x+\sigma^2 + \mu)
    \ \diff x \\
 &= \exp(2\sigma^2 + 2\mu) *
-   (\int_{-\infty}^\infty
-      \exp(2x) *
-       f_X(x+\sigma^2 + \mu)
-   \ \diff x)\\
-&= \exp(2sigma^2 + 2\mu) *
    \left(\int_{-\infty}^\infty
       \exp(2x) *
+       f_X(x+\sigma^2 + \mu)
+   \ \diff x\right)\\
+&= \exp(2\sigma^2 + 2\mu) *
+   \left(\int_{-\infty}^\infty
+      \exp(2x) *
+      \frac{1}{\sqrt{2\pi\sigma^2}} *
       \exp\left(
         -\frac{(x+\sigma^2)^2}{2\sigma^2}
       \right)
    \ \diff x\right)\\
 &= \exp(2\sigma^2 + 2\mu) *
    \left(\int_{-\infty}^\infty
+      \frac{1}{\sqrt{2\pi\sigma^2}} *
       \exp\left(
         -\frac{(x+\sigma^2)^2 - 4\sigma^2 x}{2\sigma^2}
       \right)
    \ \diff x\right) \\
 &= \exp(2\sigma^2 + 2\mu) *
    \left(\int_{-\infty}^\infty
+      \frac{1}{\sqrt{2\pi\sigma^2}} *
       \exp\left(
         -\frac{(x-\sigma^2)^2}{2\sigma^2}
       \right)
@@ -114,7 +119,6 @@ F_X(\mu) &= \int_{-\infty}^\mu f_X(x)\ \diff x \\
 &=\frac{1}{2}\left(2\int_{-\infty}^0 f_X(\mu + x)\ \diff x\right) \\
 &=\frac{1}{2}\left(\int_{-\infty}^0 f_X(\mu + x)\ \diff x + \int_{-\infty}^0 f_X(\mu - x)\ \diff x\right) \\
 &=\frac{1}{2}\left(\int_{-\infty}^0 f_X(\mu + x)\ \diff x + \int_0^\infty f_X(\mu + x)\ \diff x\right) \\
-&=\frac{1}{2}\int_{-\infty}^\infty f_X(\mu + x)\ \diff x \\
 &=\frac{1}{2}\int_{-\infty}^\infty f_X(\mu + x)\ \diff x \\
 &=\frac{1}{2}\int_{-\infty}^\infty f_X(x)\ \diff x \\
 &=\frac{1}{2}
