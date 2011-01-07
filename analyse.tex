@@ -8,7 +8,6 @@ Vi indlæser vores datasæt i R ved følgende kommando:
 \begin{center}
 \begin{verbatim}
 avit <- read.table("avit.txt", header=TRUE)
-[]  output
 \end{verbatim}
 \caption{}
 \end{center}
@@ -23,7 +22,6 @@ mændenes A-vitaminindtag på:
 \begin{center}
 \begin{verbatim}
 > avitM <- subset(avit, sex==1)$avit
-[]  output
 \end{verbatim}
 \caption{}
 \end{center}
@@ -36,7 +34,7 @@ Herefter bestemmes antallet:
 \begin{center}
 \begin{verbatim}
 > length(avitM)
-[]  output
+[]  1079
 \end{verbatim}
 \caption{}
 \end{center}
@@ -50,7 +48,6 @@ værdierne i avitM:
 \begin{center}
 \begin{verbatim}
 > logavitM <- log(avitM)
-[]  output
 \end{verbatim}
 \caption{}
 \end{center}
@@ -62,46 +59,53 @@ Vi indtegner nu histogrammer henholdsvis for avitM og logavitM:
 \begin{figure}[H]
 \label{fig:anal4}
 \begin{center}
-\begin{verbatim}
-> hist(avitM)
-[]  output
-> hist(logavitM)
-[]  output
-\end{verbatim}
-\caption{}
+\includegraphics[width=10cm]{graphs/analyse_1.pdf}
+\caption{Histogram for avitM}
 \end{center}
 \end{figure}
-
-DISKUSSION PÅ BAGGRUND AF SAMMENLIGNING AF DE TO FIGURER INDSÆTTES 
-HER!!! \\
-
-Nedenfor følger QQ-plots for avitM og logavitM:
 
 \begin{figure}[H]
 \label{fig:anal5}
 \begin{center}
-\begin{verbatim}
-> qqnorm(avitM)
-[]  output
-> qqnorm(logavitM)
-[]  output
-\end{verbatim}
-\caption{}
+\includegraphics[width=10cm]{graphs/analyse_3.pdf}
+\caption{Histogram for logavitM}
 \end{center}
 \end{figure}
 
-DISKUSSION PÅ BAGGRUND AF SAMMENLIGNING AF DE TO FIGURER INDSÆTTES 
-HER!!!
+
+Som vi kan se ser grafen for logaritmen til indtaget af A-vitamin mere
+normalfordelt ud end grafen for de rene data.
+
+Nedenfor følger QQ-plots for avitM og logavitM:
+
+\begin{figure}[H]
+\label{fig:anal6}
+\begin{center}
+\includegraphics[width=10cm]{graphs/analyse_2.pdf}
+\caption{QQ-plot for avitM}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\label{fig:anal7}
+\begin{center}
+\includegraphics[width=10cm]{graphs/analyse_4.pdf}
+\caption{Histogram for avitM}
+\end{center}
+\end{figure}
+
+Vi ser her tydeligt, at grafen for de logaritmiske data er en meget
+bedre approksimation til en normalfordeling.
 
 \paragraph{11.} 
 Gennemsnit for logavitM beregnes:
 
 \begin{figure}[H]
-\label{fig:anal6}
+\label{fig:anal8}
 \begin{center}
 \begin{verbatim}
 > mean(logavitM)
-[]  output
+[]  7.484993
 \end{verbatim}
 \caption{}
 \end{center}
@@ -110,11 +114,11 @@ Gennemsnit for logavitM beregnes:
 Stikprøvevarians for logavitM beregnes:
 
 \begin{figure}[H]
-\label{fig:anal7}
+\label{fig:anal9}
 \begin{center}
 \begin{verbatim}
 > var(logavitM)
-[]  output
+[]  0.1916541
 \end{verbatim}
 \caption{}
 \end{center}
@@ -123,11 +127,11 @@ Stikprøvevarians for logavitM beregnes:
 Stikprøvespredning for logavitM beregnes:
 
 \begin{figure}[H]
-\label{fig:anal8}
+\label{fig:anal10}
 \begin{center}
 \begin{verbatim}
 > sd(logavitM)
-[]  output
+[]  0.4377832
 \end{verbatim}
 \caption{}
 \end{center}
@@ -135,21 +139,25 @@ Stikprøvespredning for logavitM beregnes:
 
 \paragraph{12.}
 Histogrammet for logavitM indtegnes denne gang med tætheden for 
-normalfordelingen med middelværdi OUTPUT FRA OPGAVE 11 og varians
-OUTPUT FRA OPGAVE 11:
+normalfordelingen med middelværdi og varians som fundet tidligere:
 
 \begin{figure}[H]
-\label{fig:anal9}
+\label{fig:anal11}
 \begin{center}
 \begin{verbatim}
 > hist(logavitM, prop=T, nclass=25)
-[]  output
 > f = function(x) dnorm(x, mean(logavitM), sd(logavitM))
-[]  output
 > plot(f, 0, 9, add=T)
-[]  output
 \end{verbatim}
 \caption{}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\label{fig:anal12}
+\begin{center}
+\includegraphics[width=10cm]{graphs/analyse_5.pdf}
+\caption{Histogram for logavitM med normalfordelingen indtegnet}
 \end{center}
 \end{figure}
 
@@ -157,29 +165,35 @@ Histogrammet for avitM indtegnes denne gang sammen med tætheden for
 den tilhørende logaritmiske normalfordeling:
 
 \begin{figure}[H]
-\label{fig:anal10}
+\label{fig:anal13}
 \begin{center}
 \begin{verbatim}
-lnorm = function(y, mu, sigma) 1/(y*sqrt(2*pi*sigma^2)) * 
-exp(-((log(y) - mu)^2) / (2*sigma^2))
-[]  output
-hist(avitM, prop=T, nclass=25)
-[]  output
-g = function(x) lnorm(x, mean(logavitM), sd(logavitM))
-[]  output
-plot(g, 0, 8000, add=T)
-[]  output
+> lnorm = function(y, mu, sigma) 1/(y*sqrt(2*pi*sigma^2)) * 
+> exp(-((log(y) - mu)^2) / (2*sigma^2))
+> hist(avitM, prop=T, nclass=25)
+> g = function(x) lnorm(x, mean(logavitM), sd(logavitM))
+> plot(g, 0, 8000, add=T)
 \end{verbatim}
 \caption{}
 \end{center}
 \end{figure}
 
-DISKUSSION PÅ BAGGRUND AF SAMMENLIGNING AF DE TO FIGURER INDSÆTTES 
-HER!!!
+\begin{figure}[H]
+\label{fig:anal14}
+\begin{center}
+\includegraphics[width=10cm]{graphs/analyse_6.pdf}
+\caption{Histogrammet for avitM med den tilhørende logaritmiske normalfordeling}
+\end{center}
+\end{figure}
+
+Som vi kan se passer den tætheden for den logaritmiske normalfordeling
+godt på histogrammet over indtaget af A-vitaminer. Ligeledes passer
+passer tætheden af normalfordelingen med den fundne middelværdi og
+varians også godt med histogrammet for logavitM.
 
 \paragraph{13.}
 Den statistike model er givet ved udfaldsrummet $E=[0; \infty)$ samt
-familien
+  familien
 
 \begin{equation*}
   \mathcal{P} =\{ N^n_{\mu,\sigma^2} : (\mu, \sigma^2) \in \mathbb{R}
