@@ -20,7 +20,7 @@ hist(logavitM) # Histogram for logavitM
 dev.off()
 
 pdf("graphs/analyse_4.pdf")
-qqnorm(avitM) # QQ-plot for logavitM
+qqnorm(logavitM) # QQ-plot for logavitM
 dev.off()
 
 # Opgave 11
