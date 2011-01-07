@@ -1,5 +1,182 @@
 \section{Analyse af datasæt}
 
+\paragraph{8.}
+Vi indlæser vores datasæt i R ved følgende kommando:
+
+\begin{figure}[H]
+\label{fig:anal0}
+\begin{center}
+\begin{verbatim}
+avit <- read.table("avit.txt", header=TRUE)
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+\paragraph{9.}
+Der laves først en variabel, avitM, hvori vi ligger udtaget af 
+mændenes A-vitaminindtag på:
+
+\begin{figure}[H]
+\label{fig:anal1}
+\begin{center}
+\begin{verbatim}
+> avitM <- subset(avit, sex==1)$avit
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+Herefter bestemmes antallet:
+
+\begin{figure}[H]
+\label{fig:anal2}
+\begin{center}
+\begin{verbatim}
+> length(avitM)
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+Der laves nu endnu en variabel, der indeholder logaritmen til 
+værdierne i avitM:
+
+\begin{figure}[H]
+\label{fig:anal3}
+\begin{center}
+\begin{verbatim}
+> logavitM <- log(avitM)
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+\paragraph{10.}
+Vi indtegner nu histogrammer henholdsvis for avitM og logavitM:
+
+\begin{figure}[H]
+\label{fig:anal4}
+\begin{center}
+\begin{verbatim}
+> hist(avitM)
+[]  output
+> hist(logavitM)
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+DISKUSSION PÅ BAGGRUND AF SAMMENLIGNING AF DE TO FIGURER INDSÆTTES 
+HER!!! \\
+
+Nedenfor følger QQ-plots for avitM og logavitM:
+
+\begin{figure}[H]
+\label{fig:anal5}
+\begin{center}
+\begin{verbatim}
+> qqnorm(avitM)
+[]  output
+> qqnorm(logavitM)
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+DISKUSSION PÅ BAGGRUND AF SAMMENLIGNING AF DE TO FIGURER INDSÆTTES 
+HER!!!
+
+\paragraph{11.} 
+Gennemsnit for logavitM beregnes:
+
+\begin{figure}[H]
+\label{fig:anal6}
+\begin{center}
+\begin{verbatim}
+> mean(logavitM)
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+Stikprøvevarians for logavitM beregnes:
+
+\begin{figure}[H]
+\label{fig:anal7}
+\begin{center}
+\begin{verbatim}
+> var(logavitM)
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+Stikprøvespredning for logavitM beregnes:
+
+\begin{figure}[H]
+\label{fig:anal8}
+\begin{center}
+\begin{verbatim}
+> sd(logavitM)
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+\paragraph{12.}
+Histogrammet for logavitM indtegnes denne gang med tætheden for 
+normalfordelingen med middelværdi OUTPUT FRA OPGAVE 11 og varians
+OUTPUT FRA OPGAVE 11:
+
+\begin{figure}[H]
+\label{fig:anal9}
+\begin{center}
+\begin{verbatim}
+> hist(logavitM, prop=T, nclass=25)
+[]  output
+> f = function(x) dnorm(x, mean(logavitM), sd(logavitM))
+[]  output
+> plot(f, 0, 9, add=T)
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+Histogrammet for avitM indtegnes denne gang sammen med tætheden for 
+den tilhørende logaritmiske normalfordeling:
+
+\begin{figure}[H]
+\label{fig:anal10}
+\begin{center}
+\begin{verbatim}
+lnorm = function(y, mu, sigma) 1/(y*sqrt(2*pi*sigma^2)) * 
+exp(-((log(y) - mu)^2) / (2*sigma^2))
+[]  output
+hist(avitM, prop=T, nclass=25)
+[]  output
+g = function(x) lnorm(x, mean(logavitM), sd(logavitM))
+[]  output
+plot(g, 0, 8000, add=T)
+[]  output
+\end{verbatim}
+\caption{}
+\end{center}
+\end{figure}
+
+DISKUSSION PÅ BAGGRUND AF SAMMENLIGNING AF DE TO FIGURER INDSÆTTES 
+HER!!!
+
 \paragraph{13.}
 Den statistike model er givet ved udfaldsrummet $E=[0; \infty)$ samt
 familien
